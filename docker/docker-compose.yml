@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:10.4
+    ports:
+      - "35000:5432"
+    environment: 
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+
+
+  myapp:
+    container_name: myapp
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../:/usr/src/app
+      - ../node_modules:/usr/src/app/node_modules
+    ports:
+      - 3000:3000
+      - 9229:9229
+      - 3100:8080
+    depends_on:
+      - postgres
