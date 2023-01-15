@@ -4,9 +4,10 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   BaseEntity,
-  JoinColumn,
+  JoinColumn,OneToMany
 } from 'typeorm';
 import { Categories } from './Categories';
+import { SalesDetail } from './SalesDetail';
 
 @Entity()
 export class Articles extends BaseEntity {
@@ -37,4 +38,7 @@ export class Articles extends BaseEntity {
 
   @Column()
   state: Boolean;
+
+  @OneToMany(type => SalesDetail, salesDetail => salesDetail.idArticle)
+  salesDetail: SalesDetail[];
 }
