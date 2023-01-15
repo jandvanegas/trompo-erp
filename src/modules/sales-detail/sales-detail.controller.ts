@@ -1,4 +1,28 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { SalesDetailService } from './sales-detail.service';
+import { SalesDetailInterface } from './sales-detail.interface';
 
 @Controller('sales-detail')
-export class SalesDetailController {}
+export class SalesDetailController {
+  constructor(private readonly salesDetailService: SalesDetailService) {}
+
+  @Get()
+  getSalesDetail(): Promise<SalesDetailInterface> {
+    return this.salesDetailService.getSalesDetail();
+  }
+
+  @Post()
+  postSalesDetail(@Body() body: SalesDetailInterface): Promise<Object> {
+    return this.salesDetailService.postSalesDetail(body);
+  }
+
+  @Put()
+  putSalesDetail(@Body() body: SalesDetailInterface): Promise<Object> {
+    return this.salesDetailService.putSalesDetail(body);
+  }
+
+  @Delete()
+  deleteSalesDetail(@Body() body: SalesDetailInterface): Promise<Object> {
+    return this.salesDetailService.deleteSalesDetail(body);
+  }
+}
