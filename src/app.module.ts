@@ -7,10 +7,12 @@ import { SalesDetailController } from './modules/sales-detail/sales-detail.contr
 import { SalesDetailService } from './modules/sales-detail/sales-detail.service';
 import { SaleController } from './modules/sale/sale.controller';
 import { SaleService } from './modules/sale/sale.service';
+import { ClientsService } from './modules/clients/clients.service';
+import { ClientsController } from './modules/clients/clients.controller';
 
 @Module({
   imports: [],
-  controllers: [ArticlesController, CategoriesController, SalesDetailController, SaleController],
-  providers: [ArticlesService, CategoriesService, SalesDetailService, SaleService],
+  controllers: [ArticlesController, CategoriesController, SalesDetailController, SaleController, ClientsController],
+  providers: [ArticlesService, CategoriesService, SalesDetailService, SaleService, ClientsService],
 })
 export class AppModule {}

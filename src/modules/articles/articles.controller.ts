@@ -7,7 +7,7 @@ export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
   @Get()
-  getArticles(): Promise<ArticlesInterface> {
+  async getArticles(): Promise<ArticlesInterface> {
     return this.articlesService.getArticles();
   }
   @Post()

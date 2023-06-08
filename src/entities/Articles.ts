@@ -39,6 +39,9 @@ export class Articles extends BaseEntity {
   @Column()
   state: Boolean;
 
+  @Column({ name: 'categories_id', nullable: true })
+  categoriesId: number;
+
   @OneToMany(type => SalesDetail, salesDetail => salesDetail.idArticle)
   salesDetail: SalesDetail[];
 }
