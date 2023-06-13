@@ -2,6 +2,8 @@ import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { AppDataSource } from './connection/db';
+import { config } from 'dotenv';
+config();
 
 async function bootstrap() {
   AppDataSource.initialize()

@@ -7,9 +7,9 @@ import { Clients } from '../entities/Clients';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  url: 'postgres://alex:rEJFleNFCPPqfFsnJg8GLiEMjwHmth5N@dpg-chv363m7avjbv9tf8bm0-a.oregon-postgres.render.com/toctedb_waq3',
+  url: `postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}.oregon-postgres.render.com/${process.env.DATABASE_NAME}`,
   ssl: {
-    rejectUnauthorized: false, // Opcionalmente, si el certificado SSL no está verificado, establece esto en "true"
+    rejectUnauthorized: false,
   },
   // host: process.env.DATABASE_HOST,
   // port: parseInt(process.env.DATABASE_PORT),

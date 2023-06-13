@@ -9,10 +9,26 @@ import { SaleController } from './modules/sale/sale.controller';
 import { SaleService } from './modules/sale/sale.service';
 import { ClientsService } from './modules/clients/clients.service';
 import { ClientsController } from './modules/clients/clients.controller';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
-  imports: [],
-  controllers: [ArticlesController, CategoriesController, SalesDetailController, SaleController, ClientsController],
-  providers: [ArticlesService, CategoriesService, SalesDetailService, SaleService, ClientsService],
+  imports: [
+    ConfigModule.forRoot({
+      expandVariables: true,
+    }),
+  ],
+  controllers: [
+    ArticlesController,
+    CategoriesController,
+    SalesDetailController,
+    SaleController,
+    ClientsController,
+  ],
+  providers: [
+    ArticlesService,
+    CategoriesService,
+    SalesDetailService,
+    SaleService,
+    ClientsService,
+  ],
 })
 export class AppModule {}
