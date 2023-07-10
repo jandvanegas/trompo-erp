@@ -30,9 +30,8 @@ export class CategoriesService {
       return { status: 'Error' };
     }
   }
-  async deleteCategory(body: CategoriesInterface): Promise<Object> {
+  async deleteCategory(id: string): Promise<Object> {
     try {
-      const { id } = body;
       await Categories.delete(id);
       return { status: 'ok' };
     } catch (error) {

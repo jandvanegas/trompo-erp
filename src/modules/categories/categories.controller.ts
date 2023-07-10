@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Param,
+} from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CategoriesInterface } from './categories.interface';
 
@@ -18,8 +26,8 @@ export class CategoriesController {
   putCategory(@Body() body: CategoriesInterface): Promise<Object> {
     return this.appService.putCategory(body);
   }
-  @Delete()
-  deleteCategory(@Body() body: CategoriesInterface): Promise<Object> {
-    return this.appService.deleteCategory(body);
+  @Delete(':id')
+  deleteCategory(@Param('id') id: string) {
+    return this.appService.deleteCategory(id);
   }
 }
