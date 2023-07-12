@@ -2,31 +2,30 @@ import {
   BaseEntity,
   Column,
   Entity,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  ManyToOne,
 } from 'typeorm';
 import { SalesDetail } from './SalesDetail';
+import { SaleInterface } from '../modules/sale/sale.interface';
+
 @Entity()
 export class Sales extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: Number;
+  id: number;
 
   @Column()
-  idUser: Number;
+  date: number;
 
   @Column()
-  date: Number;
+  tax: number;
 
   @Column()
-  tax: Number;
+  total: number;
 
   @Column()
-  total: Number;
+  state: boolean;
 
-  @Column()
-  idState: Number;
-
-  @ManyToOne((type) => SalesDetail, (salesDetail) => salesDetail.idSales)
+  @OneToMany((type) => SalesDetail, (salesDetail) => salesDetail.idSales)
   salesDetail: SalesDetail[];
 }

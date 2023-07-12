@@ -69,9 +69,8 @@ export class ClientsService {
       return { status: 'Error' };
     }
   }
-  async deleteClients(body: any) {
+  async deleteClients(id: string) {
     try {
-      const { id } = body;
       await Clients.delete(id);
       return { status: 'ok' };
     } catch (error) {

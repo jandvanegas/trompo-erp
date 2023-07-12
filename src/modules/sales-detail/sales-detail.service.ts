@@ -34,9 +34,8 @@ export class SalesDetailService {
       return { status: 'Error' };
     }
   }
-  async deleteSalesDetail(body: any): Promise<Object> {
+  async deleteSalesDetail(id: string): Promise<Object> {
     try {
-      const { id } = body;
       await SalesDetail.delete(id);
       return { status: 'ok' };
     } catch (error) {

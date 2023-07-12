@@ -1,13 +1,22 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { SaleService } from './sale.service';
 import { SaleInterface } from './sale.interface';
+import { Sales } from 'src/entities/Sales';
 
 @Controller('sale')
 export class SaleController {
-  constructor(private readonly saleService:SaleService) {}
+  constructor(private readonly saleService: SaleService) {}
 
   @Get()
-  getSales(): Promise<SaleInterface> {
+  getSales(): Promise<Sales[]> {
     return this.saleService.getSales();
   }
   @Post()
@@ -21,7 +30,7 @@ export class SaleController {
   }
 
   @Delete()
-  deleteSales(@Body() body: SaleInterface): Promise<Object> {
-    return this.saleService.deleteSales(body);
+  deleteSales(@Param('id') id: string) {
+    return this.saleService.deleteSales(id);
   }
 }

@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ArticlesService } from './articles.service';
 import { ArticlesInterface } from './articles.interface';
 
@@ -18,8 +26,8 @@ export class ArticlesController {
   putArticles(@Body() body: ArticlesInterface): Promise<Object> {
     return this.articlesService.putArticles(body);
   }
-  @Delete()
-  deleteArticles(@Body() body: ArticlesInterface): Promise<Object> {
-    return this.articlesService.deleteArticles(body);
+  @Delete(':id')
+  deleteArticles(@Param('id') id: string) {
+    return this.articlesService.deleteArticles(id);
   }
 }

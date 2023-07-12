@@ -4,46 +4,46 @@ import { SaleInterface } from './sale.interface';
 
 @Injectable()
 export class SaleService {
-  getSales(): Promise<any> {
-    const articles = Sales.find();
-    return articles;
+  async getSales(): Promise<Sales[]> {
+    const sales = await Sales.find();
+    return sales;
   }
-  async postSales(body: any): Promise<Object> {
-    try {
-      const { idUser, date, tax, total, idState } = body;
-      const sales = new Sales();
-      sales.idUser = idUser;
-      sales.date = date;
-      sales.tax = tax;
-      sales.total = total;
-      sales.idState = idState;
 
-      await sales.save();
+  async postSales(body: SaleInterface): Promise<Object> {
+    try {
+      const { id, date, tax, total, state } = body;
+      const sale = new Sales();
+      sale.id = id;
+      sale.date = date;
+      sale.tax = tax;
+      sale.total = total;
+      sale.state = state;
+
+      await sale.save();
       return { status: 'ok' };
     } catch (error) {
       return { status: 'Error' };
     }
   }
 
-  async putSales(body: any): Promise<Object> {
+  async putSales(body: SaleInterface): Promise<Object> {
     try {
-      const { id, idUser, date, tax, total, idState } = body;
+      const { id, date, tax, total, state } = body;
       await Sales.update(id, {
-        idUser,
         date,
         tax,
         total,
-        idState,
+        state,
       });
       return { status: 'ok' };
     } catch (error) {
       return { status: 'Error' };
     }
   }
-  async deleteSales(body: SaleInterface): Promise<Object> {
+
+  async deleteSales(id: string): Promise<Object> {
     try {
-      const { id } = body;
-      Sales.delete(id);
+      await Sales.delete(id);
       return { status: 'ok' };
     } catch (error) {
       return { status: 'Error' };

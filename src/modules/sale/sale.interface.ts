@@ -1,8 +1,10 @@
+import { ClientsInterface } from '../clients/clients.interface';
+
 export interface SaleInterface {
   id: number;
-  idUser: number; 
   date: number;
   tax: number;
   total: number;
-  idState: number;
+  state: boolean;
+  client: ClientsInterface;
 }

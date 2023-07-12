@@ -65,9 +65,8 @@ export class ArticlesService {
       return { status: 'Error' };
     }
   }
-  async deleteArticles(body: ArticlesInterface): Promise<Object> {
+  async deleteArticles(id: string): Promise<Object> {
     try {
-      const { id } = body;
       await Articles.delete(id);
       return { status: 'ok' };
     } catch (error) {
