@@ -28,7 +28,7 @@ export class ClientsController {
   putClients(@Body() body: ClientsInterface): Promise<Object> {
     return this.clientsService.putClients(body);
   }
-  @Delete()
+  @Delete(':id')
   deleteClients(@Param('id') id: string) {
     return this.clientsService.deleteClients(id);
   }
